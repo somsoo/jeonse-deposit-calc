@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jeonse-deposit-calc.enjoy-onepage.com/sitemap.xml

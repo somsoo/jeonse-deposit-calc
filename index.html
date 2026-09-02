@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>전세보증금 안전진단 계산기 (JeonseGuard)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        .app-container { max-width: 600px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.05); }
+        .input-group label { display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem; }
+        .input-group input { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; outline: none; transition: border-color 0.2s; }
+        .input-group input:focus { border-color: #3b82f6; ring: 2px; ring-color: #93c5fd; }
+        .gauge-bar { height: 20px; border-radius: 10px; background: #e5e7eb; overflow: hidden; position: relative; }
+        .gauge-fill { height: 100%; transition: width 0.5s ease-in-out, background-color 0.5s; width: 0%; }
+        .result-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="app-container p-4 sm:p-6 pb-20">
+        <header class="text-center py-6 border-b border-gray-100 mb-6">
+            <h1 class="text-2xl font-bold text-gray-800"><i class="fas fa-shield-alt text-blue-500 mr-2"></i>JeonseGuard</h1>
+            <p class="text-sm text-gray-500 mt-2">전세보증금 안전진단 1분 계산기</p>
+        </header>
+
+        <form id="calcForm" class="space-y-5">
+            <div class="input-group">
+                <label for="propertyPrice">주택 가격 (공시가격 기준) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
+                <input type="number" id="propertyPrice" placeholder="예: 30000" inputmode="numeric">
+                <p class="text-xs text-gray-500 mt-1">* HUG 보증보험 가입을 위해 보통 공시가격을 입력합니다.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="seniorMortgage">선순위 근저당 (채권최고액) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
+                <input type="number" id="seniorMortgage" placeholder="예: 5000 (없으면 0)" inputmode="numeric">
+            </div>
+
+            <div class="input-group">
+                <label for="jeonseDeposit">내 전세 보증금 <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
+                <input type="number" id="jeonseDeposit" placeholder="예: 15000" inputmode="numeric">
+            </div>
+
+            <button type="button" id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-200 text-lg mt-4">
+                안전 진단하기
+            </button>
+            <button type="button" id="resetBtn" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-xl transition duration-200 text-sm mt-2">
+                입력 초기화
+            </button>
+        </form>
+
+        <!-- Results Section -->
+        <div id="resultSection" class="hidden mt-8 space-y-6">
+            <h2 class="text-xl font-bold border-l-4 border-blue-500 pl-3">진단 결과</h2>
+            
+            <!-- 깡통전세 위험도 -->
+            <div class="result-card">
+                <h3 class="font-bold text-gray-700 mb-2 flex justify-between">
+                    <span><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>깡통전세 위험도</span>
+                    <span id="riskLabel" class="text-sm px-2 py-1 rounded-full text-white bg-green-500">안전</span>
+                </h3>
+                <div class="text-2xl font-bold mb-2 text-center" id="debtRatioText">0%</div>
+                <div class="gauge-bar mb-1">
+                    <div id="riskGauge" class="gauge-fill bg-green-500"></div>
+                </div>
+                <div class="flex justify-between text-xs text-gray-500">
+                    <span>안전 (~70%)</span>
+                    <span>주의 (~80%)</span>
+                    <span>위험 (80%~)</span>
+                </div>
+                <p id="riskDesc" class="text-sm mt-3 text-gray-600"></p>
+            </div>
+
+            <!-- HUG 126% 룰 -->
+            <div class="result-card">
+                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-file-contract text-blue-500 mr-2"></i>HUG 보증보험 가입 가능 여부</h3>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm text-gray-600">HUG 가입 가능 최대 한도</span>
+                    <span class="font-bold" id="hugMaxLimit">0 만원</span>
+                </div>
+                <div class="flex justify-between items-center border-t border-gray-200 pt-2">
+                    <span class="text-sm font-bold text-gray-700">진단 결과</span>
+                    <span class="font-bold text-lg" id="hugStatus">-</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">* 공시가격의 126% 이내여야 보증보험 가입이 가능합니다. (근저당이 있을 경우 차감)</p>
+            </div>
+
+            <!-- 경매 배당 시뮬레이션 -->
+            <div class="result-card">
+                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-gavel text-red-500 mr-2"></i>최악의 상황: 경매 낙찰 시뮬레이션</h3>
+                <p class="text-xs text-gray-500 mb-3">* 낙찰가율 80% 가정 시 예상 배당액 (참고용이며 실제와 다를 수 있습니다)</p>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">예상 낙찰가 (80%)</span>
+                        <span class="font-medium" id="auctionPrice">0 만원</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">선순위 채권액 (은행 등)</span>
+                        <span class="font-medium text-red-500" id="auctionSenior">0 만원</span>
+                    </div>
+                    <div class="flex justify-between border-t border-gray-200 pt-2">
+                        <span class="text-gray-800 font-bold">내 전세금 배당 예상액</span>
+                        <span class="font-bold text-blue-600 text-base" id="auctionDividend">0 만원</span>
+                    </div>
+                    <div class="flex justify-between pt-1">
+                        <span class="text-gray-600">미회수 예상액 (손실)</span>
+                        <span class="font-bold text-red-600 text-base" id="auctionLoss">0 만원</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 안전 전세 특약 복사 -->
+            <div class="result-card">
+                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-copy text-gray-600 mr-2"></i>필수 안전 특약 모음</h3>
+                <div class="bg-white p-3 rounded border text-sm text-gray-700 mb-3 h-32 overflow-y-auto" id="specialTerms">
+1. 본 계약은 임차인의 전세보증금 반환보증 가입을 전제로 하며, 임대인 또는 목적물의 하자로 인하여 보증가입이 거절될 경우 본 계약은 무효로 하고 임대인은 계약금을 즉시 반환한다.
+2. 임대인은 잔금 지급일 다음날까지 목적물에 대하여 제한물권(근저당권 등)을 설정하지 않으며, 이를 위반할 경우 임차인은 계약을 해제할 수 있다.
+3. 국세, 지방세 체납 확인 결과 체납액이 있을 경우 임차인은 계약을 해제할 수 있으며, 이 경우 위약금 없이 계약금을 즉시 반환한다.
+4. 임대인은 계약기간 중 매매 등으로 소유권 변경 시 임차인에게 즉시 고지하여야 한다.
+                </div>
+                <button type="button" id="copyBtn" class="w-full bg-gray-800 hover:bg-gray-900 text-white py-2 rounded-lg text-sm font-medium transition">
+                    <i class="far fa-copy mr-1"></i>특약 전체 복사하기
+                </button>
+            </div>
+            
+            <div class="text-center text-xs text-gray-400 mt-6 pb-6">
+                본 계산기는 참고용이며, 법적 효력을 갖지 않습니다. 계약 전 반드시 등기부등본 확인 및 전문가와 상담하세요.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = {
+                price: document.getElementById('propertyPrice'),
+                senior: document.getElementById('seniorMortgage'),
+                deposit: document.getElementById('jeonseDeposit')
+            };
+
+            // Load from localStorage
+            ['price', 'senior', 'deposit'].forEach(key => {
+                const val = localStorage.getItem(`jeonse_${key}`);
+                if (val) inputs[key].value = val;
+            });
+
+            // Save to localStorage on input
+            Object.keys(inputs).forEach(key => {
+                inputs[key].addEventListener('input', (e) => {
+                    localStorage.setItem(`jeonse_${key}`, e.target.value);
+                });
+            });
+
+            document.getElementById('resetBtn').addEventListener('click', () => {
+                Object.keys(inputs).forEach(key => {
+                    inputs[key].value = '';
+                    localStorage.removeItem(`jeonse_${key}`);
+                });
+                document.getElementById('resultSection').classList.add('hidden');
+            });
+
+            document.getElementById('calcBtn').addEventListener('click', () => {
+                const price = parseFloat(inputs.price.value) || 0;
+                const senior = parseFloat(inputs.senior.value) || 0;
+                const deposit = parseFloat(inputs.deposit.value) || 0;
+
+                if (price <= 0 || deposit <= 0) {
+                    alert('주택 가격과 전세 보증금을 올바르게 입력해주세요.');
+                    return;
+                }
+
+                // 1. 부채비율 및 깡통전세 위험도
+                const totalDebt = senior + deposit;
+                const debtRatio = (totalDebt / price) * 100;
+                
+                const debtRatioText = document.getElementById('debtRatioText');
+                const riskGauge = document.getElementById('riskGauge');
+                const riskLabel = document.getElementById('riskLabel');
+                const riskDesc = document.getElementById('riskDesc');
+
+                debtRatioText.textContent = debtRatio.toFixed(1) + '%';
+                riskGauge.style.width = Math.min(debtRatio, 100) + '%';
+
+                if (debtRatio <= 70) {
+                    riskGauge.className = 'gauge-fill bg-green-500';
+                    riskLabel.className = 'text-sm px-2 py-1 rounded-full text-white bg-green-500';
+                    riskLabel.textContent = '안전';
+                    riskDesc.textContent = '부채비율이 70% 이하로 비교적 안전한 편입니다.';
+                } else if (debtRatio <= 80) {
+                    riskGauge.className = 'gauge-fill bg-yellow-500';
+                    riskLabel.className = 'text-sm px-2 py-1 rounded-full text-white bg-yellow-500';
+                    riskLabel.textContent = '주의';
+                    riskDesc.textContent = '부채비율이 70~80% 사이입니다. 깡통전세 위험이 있으니 주의가 필요합니다.';
+                } else {
+                    riskGauge.className = 'gauge-fill bg-red-500';
+                    riskLabel.className = 'text-sm px-2 py-1 rounded-full text-white bg-red-500';
+                    riskLabel.textContent = '위험';
+                    riskDesc.textContent = '부채비율이 80%를 초과하여 깡통전세 고위험군입니다. 계약을 재고하세요.';
+                }
+
+                // 2. HUG 126% 룰
+                // 보통 주택가격이 공시지가라고 가정 시, 공시지가 * 126% - 선순위
+                const hugLimit = (price * 1.26) - senior;
+                document.getElementById('hugMaxLimit').textContent = Math.max(0, hugLimit).toLocaleString() + ' 만원';
+                const hugStatus = document.getElementById('hugStatus');
+                if (deposit <= hugLimit && hugLimit > 0) {
+                    hugStatus.textContent = '가입 가능 예상 (안전)';
+                    hugStatus.className = 'font-bold text-lg text-green-600';
+                } else {
+                    hugStatus.textContent = '가입 불가 예상 (거절)';
+                    hugStatus.className = 'font-bold text-lg text-red-600';
+                }
+
+                // 3. 경매 배당 시뮬레이션 (80% 낙찰 가정)
+                const auctionPrice = price * 0.8;
+                document.getElementById('auctionPrice').textContent = auctionPrice.toLocaleString() + ' 만원';
+                document.getElementById('auctionSenior').textContent = senior.toLocaleString() + ' 만원';
+                
+                let myDividend = 0;
+                if (auctionPrice > senior) {
+                    myDividend = Math.min(deposit, auctionPrice - senior);
+                }
+                document.getElementById('auctionDividend').textContent = myDividend.toLocaleString() + ' 만원';
+                
+                const loss = deposit - myDividend;
+                document.getElementById('auctionLoss').textContent = loss > 0 ? loss.toLocaleString() + ' 만원' : '0 만원 (손실 없음)';
+
+                // Show results
+                document.getElementById('resultSection').classList.remove('hidden');
+                document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            // 4. 특약 복사 기능
+            document.getElementById('copyBtn').addEventListener('click', async () => {
+                const textToCopy = document.getElementById('specialTerms').innerText;
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    const btn = document.getElementById('copyBtn');
+                    const originalHTML = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check mr-1"></i>복사 완료!';
+                    btn.classList.replace('bg-gray-800', 'bg-green-600');
+                    setTimeout(() => {
+                        btn.innerHTML = originalHTML;
+                        btn.classList.replace('bg-green-600', 'bg-gray-800');
+                    }, 2000);
+                } catch (err) {
+                    alert('복사에 실패했습니다. 브라우저 설정을 확인해주세요.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
