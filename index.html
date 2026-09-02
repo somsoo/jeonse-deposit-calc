@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>?꾩꽭蹂댁쬆湲??덉쟾吏꾨떒 怨꾩궛湲?(JeonseGuard)</title>
+    <title>전세보증금 안전진단 계산기 (JeonseGuard)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -21,109 +21,110 @@
     <div class="app-container p-4 sm:p-6 pb-20">
         <header class="text-center py-6 border-b border-gray-100 mb-6">
             <h1 class="text-2xl font-bold text-gray-800"><i class="fas fa-shield-alt text-blue-500 mr-2"></i>JeonseGuard</h1>
-            <p class="text-sm text-gray-500 mt-2">?꾩꽭蹂댁쬆湲??덉쟾吏꾨떒 1遺?怨꾩궛湲?/p>
+            <p class="text-sm text-gray-500 mt-2">전세보증금 안전진단 1분 계산기</p>
         </header>
 
         <form id="calcForm" class="space-y-5">
             <div class="input-group">
-                <label for="propertyPrice">二쇳깮 媛寃?(怨듭떆媛寃?湲곗?) <span class="text-xs text-gray-400 font-normal">?⑥쐞: 留뚯썝</span></label>
-                <input type="number" id="propertyPrice" placeholder="?? 30000" inputmode="numeric">
-                <p class="text-xs text-gray-500 mt-1">* HUG 蹂댁쬆蹂댄뿕 媛?낆쓣 ?꾪빐 蹂댄넻 怨듭떆媛寃⑹쓣 ?낅젰?⑸땲??</p>
+                <label for="propertyPrice">주택 가격 (공시가격 기준) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
+                <input type="number" id="propertyPrice" placeholder="예: 30000" inputmode="numeric">
+                <p class="text-xs text-gray-500 mt-1">* HUG 보증보험 가입을 위해 보통 공시가격을 입력합니다.</p>
             </div>
             
             <div class="input-group">
-                <label for="seniorMortgage">?좎닚??洹쇱???(梨꾧텒理쒓퀬?? <span class="text-xs text-gray-400 font-normal">?⑥쐞: 留뚯썝</span></label>
-                <input type="number" id="seniorMortgage" placeholder="?? 5000 (?놁쑝硫?0)" inputmode="numeric">
+                <label for="seniorMortgage">선순위 근저당 (채권최고액) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
+                <input type="number" id="seniorMortgage" placeholder="예: 5000 (없으면 0)" inputmode="numeric">
             </div>
 
             <div class="input-group">
-                <label for="jeonseDeposit">???꾩꽭 蹂댁쬆湲?<span class="text-xs text-gray-400 font-normal">?⑥쐞: 留뚯썝</span></label>
-                <input type="number" id="jeonseDeposit" placeholder="?? 15000" inputmode="numeric">
+                <label for="jeonseDeposit">내 전세 보증금 <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
+                <input type="number" id="jeonseDeposit" placeholder="예: 15000" inputmode="numeric">
             </div>
 
             <button type="button" id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-200 text-lg mt-4">
-                ?덉쟾 吏꾨떒?섍린
+                안전 진단하기
             </button>
             <button type="button" id="resetBtn" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-xl transition duration-200 text-sm mt-2">
-                ?낅젰 珥덇린??            </button>
+                입력 초기화
+            </button>
         </form>
 
         <!-- Results Section -->
         <div id="resultSection" class="hidden mt-8 space-y-6">
-            <h2 class="text-xl font-bold border-l-4 border-blue-500 pl-3">吏꾨떒 寃곌낵</h2>
+            <h2 class="text-xl font-bold border-l-4 border-blue-500 pl-3">진단 결과</h2>
             
-            <!-- 源≫넻?꾩꽭 ?꾪뿕??-->
+            <!-- 깡통전세 위험도 -->
             <div class="result-card">
                 <h3 class="font-bold text-gray-700 mb-2 flex justify-between">
-                    <span><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>源≫넻?꾩꽭 ?꾪뿕??/span>
-                    <span id="riskLabel" class="text-sm px-2 py-1 rounded-full text-white bg-green-500">?덉쟾</span>
+                    <span><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>깡통전세 위험도</span>
+                    <span id="riskLabel" class="text-sm px-2 py-1 rounded-full text-white bg-green-500">안전</span>
                 </h3>
                 <div class="text-2xl font-bold mb-2 text-center" id="debtRatioText">0%</div>
                 <div class="gauge-bar mb-1">
                     <div id="riskGauge" class="gauge-fill bg-green-500"></div>
                 </div>
                 <div class="flex justify-between text-xs text-gray-500">
-                    <span>?덉쟾 (~70%)</span>
-                    <span>二쇱쓽 (~80%)</span>
-                    <span>?꾪뿕 (80%~)</span>
+                    <span>안전 (~70%)</span>
+                    <span>주의 (~80%)</span>
+                    <span>위험 (80%~)</span>
                 </div>
                 <p id="riskDesc" class="text-sm mt-3 text-gray-600"></p>
             </div>
 
-            <!-- HUG 126% 猷?-->
+            <!-- HUG 126% 룰 -->
             <div class="result-card">
-                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-file-contract text-blue-500 mr-2"></i>HUG 蹂댁쬆蹂댄뿕 媛??媛???щ?</h3>
+                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-file-contract text-blue-500 mr-2"></i>HUG 보증보험 가입 가능 여부</h3>
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm text-gray-600">HUG 媛??媛??理쒕? ?쒕룄</span>
-                    <span class="font-bold" id="hugMaxLimit">0 留뚯썝</span>
+                    <span class="text-sm text-gray-600">HUG 가입 가능 최대 한도</span>
+                    <span class="font-bold" id="hugMaxLimit">0 만원</span>
                 </div>
                 <div class="flex justify-between items-center border-t border-gray-200 pt-2">
-                    <span class="text-sm font-bold text-gray-700">吏꾨떒 寃곌낵</span>
+                    <span class="text-sm font-bold text-gray-700">진단 결과</span>
                     <span class="font-bold text-lg" id="hugStatus">-</span>
                 </div>
-                <p class="text-xs text-gray-500 mt-2">* 怨듭떆媛寃⑹쓽 126% ?대궡?ъ빞 蹂댁쬆蹂댄뿕 媛?낆씠 媛?ν빀?덈떎. (洹쇱??뱀씠 ?덉쓣 寃쎌슦 李④컧)</p>
+                <p class="text-xs text-gray-500 mt-2">* 공시가격의 126% 이내여야 보증보험 가입이 가능합니다. (근저당이 있을 경우 차감)</p>
             </div>
 
-            <!-- 寃쎈ℓ 諛곕떦 ?쒕??덉씠??-->
+            <!-- 경매 배당 시뮬레이션 -->
             <div class="result-card">
-                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-gavel text-red-500 mr-2"></i>理쒖븙???곹솴: 寃쎈ℓ ?숈같 ?쒕??덉씠??/h3>
-                <p class="text-xs text-gray-500 mb-3">* ?숈같媛??80% 媛?????덉긽 諛곕떦??(李멸퀬?⑹씠硫??ㅼ젣? ?ㅻ? ???덉뒿?덈떎)</p>
+                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-gavel text-red-500 mr-2"></i>최악의 상황: 경매 낙찰 시뮬레이션</h3>
+                <p class="text-xs text-gray-500 mb-3">* 낙찰가율 80% 가정 시 예상 배당액 (참고용이며 실제와 다를 수 있습니다)</p>
                 <div class="space-y-2 text-sm">
                     <div class="flex justify-between">
-                        <span class="text-gray-600">?덉긽 ?숈같媛 (80%)</span>
-                        <span class="font-medium" id="auctionPrice">0 留뚯썝</span>
+                        <span class="text-gray-600">예상 낙찰가 (80%)</span>
+                        <span class="font-medium" id="auctionPrice">0 만원</span>
                     </div>
                     <div class="flex justify-between">
-                        <span class="text-gray-600">?좎닚??梨꾧텒??(?????</span>
-                        <span class="font-medium text-red-500" id="auctionSenior">0 留뚯썝</span>
+                        <span class="text-gray-600">선순위 채권액 (은행 등)</span>
+                        <span class="font-medium text-red-500" id="auctionSenior">0 만원</span>
                     </div>
                     <div class="flex justify-between border-t border-gray-200 pt-2">
-                        <span class="text-gray-800 font-bold">???꾩꽭湲?諛곕떦 ?덉긽??/span>
-                        <span class="font-bold text-blue-600 text-base" id="auctionDividend">0 留뚯썝</span>
+                        <span class="text-gray-800 font-bold">내 전세금 배당 예상액</span>
+                        <span class="font-bold text-blue-600 text-base" id="auctionDividend">0 만원</span>
                     </div>
                     <div class="flex justify-between pt-1">
-                        <span class="text-gray-600">誘명쉶???덉긽??(?먯떎)</span>
-                        <span class="font-bold text-red-600 text-base" id="auctionLoss">0 留뚯썝</span>
+                        <span class="text-gray-600">미회수 예상액 (손실)</span>
+                        <span class="font-bold text-red-600 text-base" id="auctionLoss">0 만원</span>
                     </div>
                 </div>
             </div>
 
-            <!-- ?덉쟾 ?꾩꽭 ?뱀빟 蹂듭궗 -->
+            <!-- 안전 전세 특약 복사 -->
             <div class="result-card">
-                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-copy text-gray-600 mr-2"></i>?꾩닔 ?덉쟾 ?뱀빟 紐⑥쓬</h3>
+                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-copy text-gray-600 mr-2"></i>필수 안전 특약 모음</h3>
                 <div class="bg-white p-3 rounded border text-sm text-gray-700 mb-3 h-32 overflow-y-auto" id="specialTerms">
-1. 蹂?怨꾩빟? ?꾩감?몄쓽 ?꾩꽭蹂댁쬆湲?諛섑솚蹂댁쬆 媛?낆쓣 ?꾩젣濡??섎ŉ, ?꾨????먮뒗 紐⑹쟻臾쇱쓽 ?섏옄濡??명븯??蹂댁쬆媛?낆씠 嫄곗젅??寃쎌슦 蹂?怨꾩빟? 臾댄슚濡??섍퀬 ?꾨??몄? 怨꾩빟湲덉쓣 利됱떆 諛섑솚?쒕떎.
-2. ?꾨??몄? ?붽툑 吏湲됱씪 ?ㅼ쓬?좉퉴吏 紐⑹쟻臾쇱뿉 ??섏뿬 ?쒗븳臾쇨텒(洹쇱??밴텒 ?????ㅼ젙?섏? ?딆쑝硫? ?대? ?꾨컲??寃쎌슦 ?꾩감?몄? 怨꾩빟???댁젣?????덈떎.
-3. 援?꽭, 吏諛⑹꽭 泥대궔 ?뺤씤 寃곌낵 泥대궔?≪씠 ?덉쓣 寃쎌슦 ?꾩감?몄? 怨꾩빟???댁젣?????덉쑝硫? ??寃쎌슦 ?꾩빟湲??놁씠 怨꾩빟湲덉쓣 利됱떆 諛섑솚?쒕떎.
-4. ?꾨??몄? 怨꾩빟湲곌컙 以?留ㅻℓ ?깆쑝濡??뚯쑀沅?蹂寃????꾩감?몄뿉寃?利됱떆 怨좎??섏뿬???쒕떎.
+1. 본 계약은 임차인의 전세보증금 반환보증 가입을 전제로 하며, 임대인 또는 목적물의 하자로 인하여 보증가입이 거절될 경우 본 계약은 무효로 하고 임대인은 계약금을 즉시 반환한다.
+2. 임대인은 잔금 지급일 다음날까지 목적물에 대하여 제한물권(근저당권 등)을 설정하지 않으며, 이를 위반할 경우 임차인은 계약을 해제할 수 있다.
+3. 국세, 지방세 체납 확인 결과 체납액이 있을 경우 임차인은 계약을 해제할 수 있으며, 이 경우 위약금 없이 계약금을 즉시 반환한다.
+4. 임대인은 계약기간 중 매매 등으로 소유권 변경 시 임차인에게 즉시 고지하여야 한다.
                 </div>
                 <button type="button" id="copyBtn" class="w-full bg-gray-800 hover:bg-gray-900 text-white py-2 rounded-lg text-sm font-medium transition">
-                    <i class="far fa-copy mr-1"></i>?뱀빟 ?꾩껜 蹂듭궗?섍린
+                    <i class="far fa-copy mr-1"></i>특약 전체 복사하기
                 </button>
             </div>
             
             <div class="text-center text-xs text-gray-400 mt-6 pb-6">
-                蹂?怨꾩궛湲곕뒗 李멸퀬?⑹씠硫? 踰뺤쟻 ?⑤젰??媛뽰? ?딆뒿?덈떎. 怨꾩빟 ??諛섎뱶???깃린遺?깅낯 ?뺤씤 諛??꾨Ц媛? ?곷떞?섏꽭??
+                본 계산기는 참고용이며, 법적 효력을 갖지 않습니다. 계약 전 반드시 등기부등본 확인 및 전문가와 상담하세요.
             </div>
         </div>
     </div>
@@ -163,11 +164,12 @@
                 const deposit = parseFloat(inputs.deposit.value) || 0;
 
                 if (price <= 0 || deposit <= 0) {
-                    alert('二쇳깮 媛寃⑷낵 ?꾩꽭 蹂댁쬆湲덉쓣 ?щ컮瑜닿쾶 ?낅젰?댁＜?몄슂.');
+                    alert('주택 가격과 전세 보증금을 올바르게 입력해주세요.');
                     return;
                 }
 
-                // 1. 遺梨꾨퉬??諛?源≫넻?꾩꽭 ?꾪뿕??                const totalDebt = senior + deposit;
+                // 1. 부채비율 및 깡통전세 위험도
+                const totalDebt = senior + deposit;
                 const debtRatio = (totalDebt / price) * 100;
                 
                 const debtRatioText = document.getElementById('debtRatioText');
@@ -181,69 +183,70 @@
                 if (debtRatio <= 70) {
                     riskGauge.className = 'gauge-fill bg-green-500';
                     riskLabel.className = 'text-sm px-2 py-1 rounded-full text-white bg-green-500';
-                    riskLabel.textContent = '?덉쟾';
-                    riskDesc.textContent = '遺梨꾨퉬?⑥씠 70% ?댄븯濡?鍮꾧탳???덉쟾???몄엯?덈떎.';
+                    riskLabel.textContent = '안전';
+                    riskDesc.textContent = '부채비율이 70% 이하로 비교적 안전한 편입니다.';
                 } else if (debtRatio <= 80) {
                     riskGauge.className = 'gauge-fill bg-yellow-500';
                     riskLabel.className = 'text-sm px-2 py-1 rounded-full text-white bg-yellow-500';
-                    riskLabel.textContent = '二쇱쓽';
-                    riskDesc.textContent = '遺梨꾨퉬?⑥씠 70~80% ?ъ씠?낅땲?? 源≫넻?꾩꽭 ?꾪뿕???덉쑝??二쇱쓽媛 ?꾩슂?⑸땲??';
+                    riskLabel.textContent = '주의';
+                    riskDesc.textContent = '부채비율이 70~80% 사이입니다. 깡통전세 위험이 있으니 주의가 필요합니다.';
                 } else {
                     riskGauge.className = 'gauge-fill bg-red-500';
                     riskLabel.className = 'text-sm px-2 py-1 rounded-full text-white bg-red-500';
-                    riskLabel.textContent = '?꾪뿕';
-                    riskDesc.textContent = '遺梨꾨퉬?⑥씠 80%瑜?珥덇낵?섏뿬 源≫넻?꾩꽭 怨좎쐞?섍뎔?낅땲?? 怨꾩빟???ш퀬?섏꽭??';
+                    riskLabel.textContent = '위험';
+                    riskDesc.textContent = '부채비율이 80%를 초과하여 깡통전세 고위험군입니다. 계약을 재고하세요.';
                 }
 
-                // 2. HUG 126% 猷?                // 蹂댄넻 二쇳깮媛寃⑹씠 怨듭떆吏媛?쇨퀬 媛???? 怨듭떆吏媛 * 126% - ?좎닚??                const hugLimit = (price * 1.26) - senior;
-                document.getElementById('hugMaxLimit').textContent = Math.max(0, hugLimit).toLocaleString() + ' 留뚯썝';
+                // 2. HUG 126% 룰
+                // 보통 주택가격이 공시지가라고 가정 시, 공시지가 * 126% - 선순위
+                const hugLimit = (price * 1.26) - senior;
+                document.getElementById('hugMaxLimit').textContent = Math.max(0, hugLimit).toLocaleString() + ' 만원';
                 const hugStatus = document.getElementById('hugStatus');
                 if (deposit <= hugLimit && hugLimit > 0) {
-                    hugStatus.textContent = '媛??媛???덉긽 (?덉쟾)';
+                    hugStatus.textContent = '가입 가능 예상 (안전)';
                     hugStatus.className = 'font-bold text-lg text-green-600';
                 } else {
-                    hugStatus.textContent = '媛??遺덇? ?덉긽 (嫄곗젅)';
+                    hugStatus.textContent = '가입 불가 예상 (거절)';
                     hugStatus.className = 'font-bold text-lg text-red-600';
                 }
 
-                // 3. 寃쎈ℓ 諛곕떦 ?쒕??덉씠??(80% ?숈같 媛??
+                // 3. 경매 배당 시뮬레이션 (80% 낙찰 가정)
                 const auctionPrice = price * 0.8;
-                document.getElementById('auctionPrice').textContent = auctionPrice.toLocaleString() + ' 留뚯썝';
-                document.getElementById('auctionSenior').textContent = senior.toLocaleString() + ' 留뚯썝';
+                document.getElementById('auctionPrice').textContent = auctionPrice.toLocaleString() + ' 만원';
+                document.getElementById('auctionSenior').textContent = senior.toLocaleString() + ' 만원';
                 
                 let myDividend = 0;
                 if (auctionPrice > senior) {
                     myDividend = Math.min(deposit, auctionPrice - senior);
                 }
-                document.getElementById('auctionDividend').textContent = myDividend.toLocaleString() + ' 留뚯썝';
+                document.getElementById('auctionDividend').textContent = myDividend.toLocaleString() + ' 만원';
                 
                 const loss = deposit - myDividend;
-                document.getElementById('auctionLoss').textContent = loss > 0 ? loss.toLocaleString() + ' 留뚯썝' : '0 留뚯썝 (?먯떎 ?놁쓬)';
+                document.getElementById('auctionLoss').textContent = loss > 0 ? loss.toLocaleString() + ' 만원' : '0 만원 (손실 없음)';
 
                 // Show results
                 document.getElementById('resultSection').classList.remove('hidden');
                 document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
 
-            // 4. ?뱀빟 蹂듭궗 湲곕뒫
+            // 4. 특약 복사 기능
             document.getElementById('copyBtn').addEventListener('click', async () => {
                 const textToCopy = document.getElementById('specialTerms').innerText;
                 try {
                     await navigator.clipboard.writeText(textToCopy);
                     const btn = document.getElementById('copyBtn');
                     const originalHTML = btn.innerHTML;
-                    btn.innerHTML = '<i class="fas fa-check mr-1"></i>蹂듭궗 ?꾨즺!';
+                    btn.innerHTML = '<i class="fas fa-check mr-1"></i>복사 완료!';
                     btn.classList.replace('bg-gray-800', 'bg-green-600');
                     setTimeout(() => {
                         btn.innerHTML = originalHTML;
                         btn.classList.replace('bg-green-600', 'bg-gray-800');
                     }, 2000);
                 } catch (err) {
-                    alert('蹂듭궗???ㅽ뙣?덉뒿?덈떎. 釉뚮씪?곗? ?ㅼ젙???뺤씤?댁＜?몄슂.');
+                    alert('복사에 실패했습니다. 브라우저 설정을 확인해주세요.');
                 }
             });
         });
     </script>
 </body>
 </html>
-
