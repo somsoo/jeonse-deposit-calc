@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -18,14 +18,14 @@
     }
   }
   </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>전세보증금 안전진단 계산기 | HUG 126% 깡통전세</title>
-    <meta name="description" content="공시가격 126% HUG 보증보험 가입 가능 여부와 근저당 경매 배당금을 1분 만에 안전 진단해 드립니다.">
-    <meta name="keywords" content="전세보증금 계산기, HUG 126%, 깡통전세 계산기, 전세사기 예방, 경매 배당금">
-    <link rel="canonical" href="https://jeonse-deposit-calc.enjoy-onepage.com/">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>전세보증금 안전진단 계산기 | HUG 126% 깡통전세</title>
+<meta content="공시가격 126% HUG 보증보험 가입 가능 여부와 근저당 경매 배당금을 1분 만에 안전 진단해 드립니다." name="description"/>
+<meta content="전세보증금 계산기, HUG 126%, 깡통전세 계산기, 전세사기 예방, 경매 배당금" name="keywords"/>
+<link href="https://jeonse-deposit-calc.enjoy-onepage.com/" rel="canonical"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<style>
         *, *::before, *::after { box-sizing: border-box; }
         html, body { overflow-x: hidden; max-width: 100vw; }
         body { background-color: #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; }
@@ -37,139 +37,126 @@
         .gauge-fill { height: 100%; transition: width 0.5s ease-in-out, background-color 0.5s; width: 0%; }
         .result-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem; margin-top: 1rem; }
     </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-  <link rel="alternate" type="application/rss+xml" title="전세보증금 안전진단 계산기 (JeonseGuard) RSS Feed" href="https://jeonse-deposit-calc.enjoy-onepage.com/rss.xml" />
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://jeonse-deposit-calc.enjoy-onepage.com/sitemap.xml" />
-</head>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106"></script>
+<link href="https://jeonse-deposit-calc.enjoy-onepage.com/rss.xml" rel="alternate" title="전세보증금 안전진단 계산기 (JeonseGuard) RSS Feed" type="application/rss+xml">
+<link href="https://jeonse-deposit-calc.enjoy-onepage.com/sitemap.xml" rel="sitemap" title="Sitemap" type="application/xml">
+</link></link></head>
 <body>
+<!-- 상단 슬림 띠배너 (헤더 직하단: 50~60px 슬림형) -->
 
-    <!-- 상단 슬림 띠배너 (헤더 직하단: 50~60px 슬림형) -->
-    <div class="manual-ad-box ad-top-banner" style="width: 100%; max-width: 960px; margin: 8px auto 16px; overflow: hidden; text-align: center; min-height: 50px; max-height: 60px;">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:100%;height:60px;"
-             data-ad-client="ca-pub-2228289204702106"
-             data-ad-slot="3824727725"
-             data-ad-format="horizontal"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-    <div class="app-container p-4 sm:p-6 pb-20">
-        <header class="text-center py-6 border-b border-gray-100 mb-6">
-            <h1 class="text-2xl font-bold text-gray-800"><i class="fas fa-shield-alt text-blue-500 mr-2"></i>JeonseGuard</h1>
-            <p class="text-sm text-gray-500 mt-2">전세보증금 안전진단 1분 계산기</p>
-        </header>
-    
+<div class="app-container p-4 sm:p-6 pb-20">
+<header class="text-center py-6 border-b border-gray-100 mb-6">
+<h1 class="text-2xl font-bold text-gray-800"><i class="fas fa-shield-alt text-blue-500 mr-2"></i>JeonseGuard</h1>
+<p class="text-sm text-gray-500 mt-2">전세보증금 안전진단 1분 계산기</p>
+</header>
 
-
-        <form id="calcForm" class="space-y-5">
-            <div class="input-group">
-                <label for="propertyPrice">주택 가격 (공시가격 기준) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
-                <input type="number" id="propertyPrice" placeholder="예: 30000" inputmode="numeric">
-                <p class="text-xs text-gray-500 mt-1">* HUG 보증보험 가입을 위해 보통 공시가격을 입력합니다.</p>
-            </div>
-            
-            <div class="input-group">
-                <label for="seniorMortgage">선순위 근저당 (채권최고액) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
-                <input type="number" id="seniorMortgage" placeholder="예: 5000 (없으면 0)" inputmode="numeric">
-            </div>
-
-            <div class="input-group">
-                <label for="jeonseDeposit">내 전세 보증금 <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
-                <input type="number" id="jeonseDeposit" placeholder="예: 15000" inputmode="numeric">
-            </div>
-
-            <button type="button" id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-200 text-lg mt-4">
+<!-- 상단 슬림 띠배너 (헤더 직하단: 50~60px 슬림형) -->
+<div class="manual-ad-box ad-top-banner" style="width: 100%; max-width: 960px; margin: 8px auto 16px; overflow: hidden; text-align: center; min-height: 50px; max-height: 60px;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;height:60px;"
+         data-ad-client="ca-pub-2228289204702106"
+         data-ad-slot="3824727725"
+         data-ad-format="horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<form class="space-y-5" id="calcForm">
+<div class="input-group">
+<label for="propertyPrice">주택 가격 (공시가격 기준) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
+<input id="propertyPrice" inputmode="numeric" placeholder="예: 30000" type="number"/>
+<p class="text-xs text-gray-500 mt-1">* HUG 보증보험 가입을 위해 보통 공시가격을 입력합니다.</p>
+</div>
+<div class="input-group">
+<label for="seniorMortgage">선순위 근저당 (채권최고액) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
+<input id="seniorMortgage" inputmode="numeric" placeholder="예: 5000 (없으면 0)" type="number"/>
+</div>
+<div class="input-group">
+<label for="jeonseDeposit">내 전세 보증금 <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
+<input id="jeonseDeposit" inputmode="numeric" placeholder="예: 15000" type="number"/>
+</div>
+<button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-200 text-lg mt-4" id="calcBtn" type="button">
                 안전 진단하기
             </button>
-            <button type="button" id="resetBtn" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-xl transition duration-200 text-sm mt-2">
+<button class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-xl transition duration-200 text-sm mt-2" id="resetBtn" type="button">
                 입력 초기화
             </button>
-        </form>
-
-        <!-- Results Section -->
-        <div id="resultSection" class="hidden mt-8 space-y-6">
-            <h2 class="text-xl font-bold border-l-4 border-blue-500 pl-3">진단 결과</h2>
-            
-            <!-- 깡통전세 위험도 -->
-            <div class="result-card">
-                <h3 class="font-bold text-gray-700 mb-2 flex justify-between">
-                    <span><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>깡통전세 위험도</span>
-                    <span id="riskLabel" class="text-sm px-2 py-1 rounded-full text-white bg-green-500">안전</span>
-                </h3>
-                <div class="text-2xl font-bold mb-2 text-center" id="debtRatioText">0%</div>
-                <div class="gauge-bar mb-1">
-                    <div id="riskGauge" class="gauge-fill bg-green-500"></div>
-                </div>
-                <div class="flex justify-between text-xs text-gray-500">
-                    <span>안전 (~70%)</span>
-                    <span>주의 (~80%)</span>
-                    <span>위험 (80%~)</span>
-                </div>
-                <p id="riskDesc" class="text-sm mt-3 text-gray-600"></p>
-            </div>
-
-            <!-- HUG 126% 룰 -->
-            <div class="result-card">
-                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-file-contract text-blue-500 mr-2"></i>HUG 보증보험 가입 가능 여부</h3>
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm text-gray-600">HUG 가입 가능 최대 한도</span>
-                    <span class="font-bold" id="hugMaxLimit">0 만원</span>
-                </div>
-                <div class="flex justify-between items-center border-t border-gray-200 pt-2">
-                    <span class="text-sm font-bold text-gray-700">진단 결과</span>
-                    <span class="font-bold text-lg" id="hugStatus">-</span>
-                </div>
-                <p class="text-xs text-gray-500 mt-2">* 공시가격의 126% 이내여야 보증보험 가입이 가능합니다. (근저당이 있을 경우 차감)</p>
-            </div>
-
-            <!-- 경매 배당 시뮬레이션 -->
-            <div class="result-card">
-                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-gavel text-red-500 mr-2"></i>최악의 상황: 경매 낙찰 시뮬레이션</h3>
-                <p class="text-xs text-gray-500 mb-3">* 낙찰가율 80% 가정 시 예상 배당액 (참고용이며 실제와 다를 수 있습니다)</p>
-                <div class="space-y-2 text-sm">
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">예상 낙찰가 (80%)</span>
-                        <span class="font-medium" id="auctionPrice">0 만원</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">선순위 채권액 (은행 등)</span>
-                        <span class="font-medium text-red-500" id="auctionSenior">0 만원</span>
-                    </div>
-                    <div class="flex justify-between border-t border-gray-200 pt-2">
-                        <span class="text-gray-800 font-bold">내 전세금 배당 예상액</span>
-                        <span class="font-bold text-blue-600 text-base" id="auctionDividend">0 만원</span>
-                    </div>
-                    <div class="flex justify-between pt-1">
-                        <span class="text-gray-600">미회수 예상액 (손실)</span>
-                        <span class="font-bold text-red-600 text-base" id="auctionLoss">0 만원</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 안전 전세 특약 복사 -->
-            <div class="result-card">
-                <h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-copy text-gray-600 mr-2"></i>필수 안전 특약 모음</h3>
-                <div class="bg-white p-3 rounded border text-sm text-gray-700 mb-3 h-32 overflow-y-auto" id="specialTerms">
+</form>
+<!-- Results Section -->
+<div class="hidden mt-8 space-y-6" id="resultSection">
+<h2 class="text-xl font-bold border-l-4 border-blue-500 pl-3">진단 결과</h2>
+<!-- 깡통전세 위험도 -->
+<div class="result-card">
+<h3 class="font-bold text-gray-700 mb-2 flex justify-between">
+<span><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>깡통전세 위험도</span>
+<span class="text-sm px-2 py-1 rounded-full text-white bg-green-500" id="riskLabel">안전</span>
+</h3>
+<div class="text-2xl font-bold mb-2 text-center" id="debtRatioText">0%</div>
+<div class="gauge-bar mb-1">
+<div class="gauge-fill bg-green-500" id="riskGauge"></div>
+</div>
+<div class="flex justify-between text-xs text-gray-500">
+<span>안전 (~70%)</span>
+<span>주의 (~80%)</span>
+<span>위험 (80%~)</span>
+</div>
+<p class="text-sm mt-3 text-gray-600" id="riskDesc"></p>
+</div>
+<!-- HUG 126% 룰 -->
+<div class="result-card">
+<h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-file-contract text-blue-500 mr-2"></i>HUG 보증보험 가입 가능 여부</h3>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm text-gray-600">HUG 가입 가능 최대 한도</span>
+<span class="font-bold" id="hugMaxLimit">0 만원</span>
+</div>
+<div class="flex justify-between items-center border-t border-gray-200 pt-2">
+<span class="text-sm font-bold text-gray-700">진단 결과</span>
+<span class="font-bold text-lg" id="hugStatus">-</span>
+</div>
+<p class="text-xs text-gray-500 mt-2">* 공시가격의 126% 이내여야 보증보험 가입이 가능합니다. (근저당이 있을 경우 차감)</p>
+</div>
+<!-- 경매 배당 시뮬레이션 -->
+<div class="result-card">
+<h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-gavel text-red-500 mr-2"></i>최악의 상황: 경매 낙찰 시뮬레이션</h3>
+<p class="text-xs text-gray-500 mb-3">* 낙찰가율 80% 가정 시 예상 배당액 (참고용이며 실제와 다를 수 있습니다)</p>
+<div class="space-y-2 text-sm">
+<div class="flex justify-between">
+<span class="text-gray-600">예상 낙찰가 (80%)</span>
+<span class="font-medium" id="auctionPrice">0 만원</span>
+</div>
+<div class="flex justify-between">
+<span class="text-gray-600">선순위 채권액 (은행 등)</span>
+<span class="font-medium text-red-500" id="auctionSenior">0 만원</span>
+</div>
+<div class="flex justify-between border-t border-gray-200 pt-2">
+<span class="text-gray-800 font-bold">내 전세금 배당 예상액</span>
+<span class="font-bold text-blue-600 text-base" id="auctionDividend">0 만원</span>
+</div>
+<div class="flex justify-between pt-1">
+<span class="text-gray-600">미회수 예상액 (손실)</span>
+<span class="font-bold text-red-600 text-base" id="auctionLoss">0 만원</span>
+</div>
+</div>
+</div>
+<!-- 안전 전세 특약 복사 -->
+<div class="result-card">
+<h3 class="font-bold text-gray-700 mb-3"><i class="fas fa-copy text-gray-600 mr-2"></i>필수 안전 특약 모음</h3>
+<div class="bg-white p-3 rounded border text-sm text-gray-700 mb-3 h-32 overflow-y-auto" id="specialTerms">
 1. 본 계약은 임차인의 전세보증금 반환보증 가입을 전제로 하며, 임대인 또는 목적물의 하자로 인하여 보증가입이 거절될 경우 본 계약은 무효로 하고 임대인은 계약금을 즉시 반환한다.
 2. 임대인은 잔금 지급일 다음날까지 목적물에 대하여 제한물권(근저당권 등)을 설정하지 않으며, 이를 위반할 경우 임차인은 계약을 해제할 수 있다.
 3. 국세, 지방세 체납 확인 결과 체납액이 있을 경우 임차인은 계약을 해제할 수 있으며, 이 경우 위약금 없이 계약금을 즉시 반환한다.
 4. 임대인은 계약기간 중 매매 등으로 소유권 변경 시 임차인에게 즉시 고지하여야 한다.
                 </div>
-                <button type="button" id="copyBtn" class="w-full bg-gray-800 hover:bg-gray-900 text-white py-2 rounded-lg text-sm font-medium transition">
-                    <i class="far fa-copy mr-1"></i>특약 전체 복사하기
+<button class="w-full bg-gray-800 hover:bg-gray-900 text-white py-2 rounded-lg text-sm font-medium transition" id="copyBtn" type="button">
+<i class="far fa-copy mr-1"></i>특약 전체 복사하기
                 </button>
-            </div>
-            
-            
-
-            <div class="text-center text-xs text-gray-400 mt-6 pb-6">
+</div>
+<div class="text-center text-xs text-gray-400 mt-6 pb-6">
                 본 계산기는 참고용이며, 법적 효력을 갖지 않습니다. 계약 전 반드시 등기부등본 확인 및 전문가와 상담하세요.
             </div>
-        </div>
-    </div>
-
-    <script>
+</div>
+</div>
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             const inputs = {
                 price: document.getElementById('propertyPrice'),
@@ -288,21 +275,16 @@
             });
         });
     </script>
-    
-
-
-    <!-- E-E-A-T 서브페이지 네비게이션 링크 -->
-    <div class="max-w-4xl mx-auto px-4 py-4 mt-6 border-t border-slate-200 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-500">
-        <a href="/about.html" class="hover:text-blue-600 transition">서비스 소개 &amp; 산출 공식</a>
-        <span class="text-slate-300">&middot;</span>
-        <a href="/privacy.html" class="hover:text-blue-600 transition">개인정보처리방침 (로컬 연산)</a>
-        <span class="text-slate-300">&middot;</span>
-        <a href="/sitemap.xml" class="hover:text-blue-600 transition">사이트맵</a>
-    </div>
-
-
-  <!-- Preemptive UX Helper: Auto comma formatting & Result sharing -->
-  <script>
+<!-- E-E-A-T 서브페이지 네비게이션 링크 -->
+<div class="max-w-4xl mx-auto px-4 py-4 mt-6 border-t border-slate-200 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-500">
+<a class="hover:text-blue-600 transition" href="/about.html">서비스 소개 &amp; 산출 공식</a>
+<span class="text-slate-300">·</span>
+<a class="hover:text-blue-600 transition" href="/privacy.html">개인정보처리방침 (로컬 연산)</a>
+<span class="text-slate-300">·</span>
+<a class="hover:text-blue-600 transition" href="/sitemap.xml">사이트맵</a>
+</div>
+<!-- Preemptive UX Helper: Auto comma formatting & Result sharing -->
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       // Auto comma on number/text inputs with currency hints
       const moneyInputs = document.querySelectorAll('input[type="text"], input[type="number"], input[inputmode="numeric"]');
@@ -354,21 +336,10 @@
       }
     });
   </script>
+<!-- 하단 대형 배너 (푸터 직전) -->
 
-    <!-- 하단 대형 배너 (푸터 직전) -->
-    <div class="manual-ad-box ad-bottom-banner" style="width: 100%; max-width: 960px; margin: 24px auto 16px; overflow: hidden; text-align: center;">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2228289204702106"
-             data-ad-slot="3416334507"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-  <!-- Global UX Helper: Universal Result Copy & Toast -->
-  <script>
+<!-- Global UX Helper: Universal Result Copy & Toast -->
+<script>
     window.showToastNotification = function(msg) {
       let toast = document.getElementById('global-ux-toast');
       if (!toast) {
@@ -419,7 +390,17 @@
       document.body.removeChild(ta);
     }
   </script>
+<!-- 하단 대형 배너 (푸터 직전) -->
+<div class="manual-ad-box ad-bottom-banner" style="width: 100%; max-width: 960px; margin: 24px auto 16px; overflow: hidden; text-align: center;">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2228289204702106"
+         data-ad-slot="3416334507"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
 
 </body>
 </html>
-
