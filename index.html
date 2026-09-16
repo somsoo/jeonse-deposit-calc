@@ -3,21 +3,57 @@
 <html lang="ko">
 <head><link href="favicon.ico" rel="icon" type="image/x-icon"/><link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "전세보증금 안전진단 계산기 | HUG 126% 깡통전세",
-    "description": "공시가격 126% HUG 보증보험 가입 가능 여부와 근저당 경매 배당금을 1분 만에 안전 진단해 드립니다.",
-    "url": "https://jeonse-deposit-calc.enjoy-onepage.com/",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "KRW"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://jeonse-deposit-calc.enjoy-onepage.com/#webapp",
+      "name": "JeonseGuard",
+      "url": "https://jeonse-deposit-calc.enjoy-onepage.com/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description": "공시가격 126% HUG 보증보험 가입 가능 여부와 근저당 경매 배당금을 1분 만에 안전 진단해 드립니다.",
+      "image": "https://jeonse-deposit-calc.enjoy-onepage.com/og-image.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://jeonse-deposit-calc.enjoy-onepage.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "공시가격은 어디서 확인할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "국토교통부 '부동산 공시가격 알리미' 웹사이트에서 아파트(공동주택) 및 빌라(다세대/연립) 공시가격을 호수별로 즉시 열람할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "126%를 초과하면 보증보험 가입이 아예 불가능한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, HUG의 공식 가입 규정이므로 1원이라도 초과하면 전액 가입이 거절됩니다. 단, SGI서울보증의 경우 별도 감정평가 기준을 따를 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "안전한 계약을 위한 필수 특약 문구는?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "'임대인은 잔금 지급일 익일까지 본 주택에 저당권 등 제한물권을 설정하지 않으며, 전세보증보험 가입 불가 시 계약금 및 잔금 전액을 즉시 반환한다'를 반드시 명시해야 합니다."
+          }
+        }
+      ]
     }
-  }
+  ]
+}
   </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
