@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>전세보증금 안전진단 계산기 (JeonseGuard)</title>
+    <title>전세보증금 안전진단 계산기 | HUG 126% 깡통전세</title>
     <link>https://jeonse-deposit-calc.enjoy-onepage.com/</link>
-    <description>전세보증금 안전진단 계산기 (JeonseGuard) 실시간 온라인 도구 및 팩트 기반 전문 칼럼 피드</description>
+    <description>공시가격 126% HUG 보증보험 가입 가능 여부와 근저당 경매 배당금을 1분 만에 안전 진단해 드립니다.</description>
     <language>ko-KR</language>
-    <lastBuildDate>Sat, 12 Sep 2026 03:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 03:12:25 +0900</lastBuildDate>
     <atom:link href="https://jeonse-deposit-calc.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>전세보증금 안전진단 계산기 (JeonseGuard)</title>
+      <title>전세보증금 안전진단 계산기 | HUG 126% 깡통전세</title>
       <link>https://jeonse-deposit-calc.enjoy-onepage.com/</link>
       <guid isPermaLink="true">https://jeonse-deposit-calc.enjoy-onepage.com/</guid>
-      <description>전세보증금 안전진단 계산기 (JeonseGuard) 실시간 온라인 무료 도구 및 시뮬레이터</description>
+      <description>공시가격 126% HUG 보증보험 가입 가능 여부와 근저당 경매 배당금을 1분 만에 안전 진단해 드립니다.</description>
       <pubDate>Sat, 12 Sep 2026 00:00:00 +0900</pubDate>
     </item>
     <item>
-      <title>전세보증금 안전진단 계산기 (JeonseGuard) 서비스 소개 및 산출 공식 안내</title>
+      <title>이용약관 | 전세보증금 안전진단 계산기</title>
+      <link>https://jeonse-deposit-calc.enjoy-onepage.com/terms.html</link>
+      <guid isPermaLink="true">https://jeonse-deposit-calc.enjoy-onepage.com/terms.html</guid>
+      <description>전세보증금 안전진단 계산기의 서비스 이용약관 및 법적 면책 조항 안내입니다.</description>
+      <pubDate>Thu, 01 Oct 2026 03:12:25 +0900</pubDate>
+    </item>
+    <item>
+      <title>서비스 소개 및 산출 기준 | 전세보증금 안전진단 계산기</title>
       <link>https://jeonse-deposit-calc.enjoy-onepage.com/about.html</link>
       <guid isPermaLink="true">https://jeonse-deposit-calc.enjoy-onepage.com/about.html</guid>
-      <description>전세보증금 안전진단 계산기 (JeonseGuard)의 데이터 처리 원칙, 공식 산출 로직 및 검증 기준입니다.</description>
+      <description>HUG 126% 보증보험 가입 요건 및 깡통전세 위험도 진단</description>
       <pubDate>Sat, 12 Sep 2026 01:00:00 +0900</pubDate>
     </item>
     <item>
-      <title>전세보증금 안전진단 계산기 (JeonseGuard) 개인정보처리방침</title>
+      <title>개인정보처리방침 | 전세보증금 안전진단 계산기</title>
       <link>https://jeonse-deposit-calc.enjoy-onepage.com/privacy.html</link>
       <guid isPermaLink="true">https://jeonse-deposit-calc.enjoy-onepage.com/privacy.html</guid>
-      <description>전세보증금 안전진단 계산기 (JeonseGuard)의 개인정보 보호 및 100% 브라우저 메모리 로컬 연산 보안 정책입니다.</description>
+      <description>전세보증금 안전진단 계산기의 개인정보 처리방침 및 데이터 로컬 연산 원칙 안내</description>
       <pubDate>Sat, 12 Sep 2026 01:10:00 +0900</pubDate>
     </item>
   </channel>
