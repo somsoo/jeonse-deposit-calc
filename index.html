@@ -292,9 +292,9 @@
             });
 
             document.getElementById('calcBtn').addEventListener('click', () => {
-                const price = parseFloat(inputs.price.value) || 0;
-                const senior = parseFloat(inputs.senior.value) || 0;
-                const deposit = parseFloat(inputs.deposit.value) || 0;
+                const price = Math.max(0, parseFloat(inputs.price.value) || 0);
+                const senior = Math.max(0, parseFloat(inputs.senior.value) || 0);
+                const deposit = Math.max(0, parseFloat(inputs.deposit.value) || 0);
 
                 if (price <= 0 || deposit <= 0) {
                     alert('주택 가격과 전세 보증금을 올바르게 입력해주세요.');
