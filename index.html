@@ -88,7 +88,35 @@
             outline-offset: 1px !important;
         }
     
-    </style>
+        /* Modern Fintech Diagnosis & Receipt Styling */
+    .app-container {
+        max-width: 960px !important;
+        border-radius: 16px;
+        margin: 20px auto !important;
+    }
+    @media (max-width: 640px) {
+        .app-container {
+            margin: 0 !important;
+            border-radius: 0 !important;
+            padding-left: 14px !important;
+            padding-right: 14px !important;
+        }
+    }
+    .receipt-card {
+        background: #ffffff;
+        box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+    }
+    .quick-btn {
+        transition: all 0.15s ease-in-out;
+    }
+    .quick-btn:hover {
+        background-color: #e2e8f0;
+        color: #1e293b;
+    }
+    .quick-btn:active {
+        transform: scale(0.96);
+    }
+</style>
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106"></script>
 <link href="https://jeonse-deposit-calc.enjoy-onepage.com/rss.xml" rel="alternate" title="전세보증금 안전진단 계산기 (JeonseGuard) RSS Feed" type="application/rss+xml"/>
 <link href="https://jeonse-deposit-calc.enjoy-onepage.com/sitemap.xml" rel="sitemap" title="Sitemap" type="application/xml"/>
@@ -167,17 +195,51 @@
 <div class="lg:col-span-6 w-full">
 <form class="space-y-5" id="calcForm">
 <div class="input-group">
-<label for="propertyPrice">주택 가격 (공시가격 기준) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
-<input id="propertyPrice" inputmode="numeric" placeholder="예: 30000" type="number" min="0"/>
-<p class="text-xs text-gray-500 mt-1">* HUG 보증보험 가입을 위해 보통 공시가격을 입력합니다.</p>
+<div class="flex justify-between items-center mb-1">
+<label for="propertyPrice" class="font-bold text-slate-700 text-sm">주택 가격 (공시가격 기준) <span class="text-xs text-slate-400 font-normal">단위: 만원</span></label>
+<span id="propertyPriceText" class="text-xs text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded">3억 원</span>
 </div>
-<div class="input-group">
-<label for="seniorMortgage">선순위 근저당 (채권최고액) <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
-<input id="seniorMortgage" inputmode="numeric" placeholder="예: 5000 (없으면 0)" type="number" min="0"/>
+<input id="propertyPrice" inputmode="numeric" placeholder="예: 30000" type="number" min="0" value="30000" class="w-full p-3 text-right font-bold text-lg border border-slate-200 bg-slate-50 focus:bg-white rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"/>
+<div class="flex gap-1.5 mt-1.5 flex-wrap">
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-price-btn whitespace-nowrap" data-add="5000" type="button">+5천만</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-price-btn whitespace-nowrap" data-add="10000" type="button">+1억</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-price-btn whitespace-nowrap" data-add="30000" type="button">+3억</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-price-btn whitespace-nowrap" data-add="50000" type="button">+5억</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-500 text-xs rounded font-medium quick-btn reset-input-btn whitespace-nowrap" data-target="propertyPrice" type="button">↺ 초기화</button>
 </div>
+<p class="text-xs text-slate-500 mt-1">* HUG 보증보험 가입을 위해 보통 공시가격을 입력합니다.</p>
+</div>
+
 <div class="input-group">
-<label for="jeonseDeposit">내 전세 보증금 <span class="text-xs text-gray-400 font-normal">단위: 만원</span></label>
-<input id="jeonseDeposit" inputmode="numeric" placeholder="예: 15000" type="number" min="0"/>
+<div class="flex justify-between items-center mb-1">
+<label for="seniorMortgage" class="font-bold text-slate-700 text-sm">선순위 근저당 (채권최고액) <span class="text-xs text-slate-400 font-normal">단위: 만원</span></label>
+<span id="seniorMortgageText" class="text-xs text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded">0원 (없음)</span>
+</div>
+<input id="seniorMortgage" inputmode="numeric" placeholder="예: 5000 (없으면 0)" type="number" min="0" value="0" class="w-full p-3 text-right font-bold text-lg border border-slate-200 bg-slate-50 focus:bg-white rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"/>
+<div class="flex gap-1.5 mt-1.5 flex-wrap">
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-senior-btn whitespace-nowrap" data-add="1000" type="button">+1천만</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-senior-btn whitespace-nowrap" data-add="3000" type="button">+3천만</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-senior-btn whitespace-nowrap" data-add="5000" type="button">+5천만</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-senior-btn whitespace-nowrap" data-add="10000" type="button">+1억</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-500 text-xs rounded font-medium quick-btn reset-input-btn whitespace-nowrap" data-target="seniorMortgage" type="button">↺ 0원</button>
+</div>
+<p class="text-xs text-slate-500 mt-1">* 은행 대출 등 등기부등본 을구 선순위 채권최고액</p>
+</div>
+
+<div class="input-group">
+<div class="flex justify-between items-center mb-1">
+<label for="jeonseDeposit" class="font-bold text-slate-700 text-sm">내 전세 보증금 <span class="text-xs text-slate-400 font-normal">단위: 만원</span></label>
+<span id="jeonseDepositText" class="text-xs text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded">2억 원</span>
+</div>
+<input id="jeonseDeposit" inputmode="numeric" placeholder="예: 15000" type="number" min="0" value="20000" class="w-full p-3 text-right font-bold text-lg border border-slate-200 bg-slate-50 focus:bg-white rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"/>
+<div class="flex gap-1.5 mt-1.5 flex-wrap">
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-deposit-btn whitespace-nowrap" data-add="1000" type="button">+1천만</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-deposit-btn whitespace-nowrap" data-add="5000" type="button">+5천만</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-deposit-btn whitespace-nowrap" data-add="10000" type="button">+1억</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium quick-btn add-deposit-btn whitespace-nowrap" data-add="20000" type="button">+2억</button>
+  <button class="px-2 py-1 bg-slate-100 text-slate-500 text-xs rounded font-medium quick-btn reset-input-btn whitespace-nowrap" data-target="jeonseDeposit" type="button">↺ 초기화</button>
+</div>
+<p class="text-xs text-slate-500 mt-1">* 계약할 전세보증금액</p>
 </div>
 <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-200 text-lg mt-4 whitespace-nowrap" id="calcBtn" type="button">
                 안전 진단하기
@@ -189,8 +251,76 @@
 <!-- Results Section -->
 </div>
 <div class="lg:col-span-6 lg:sticky lg:top-8 w-full">
-<div class="hidden mt-8 lg:mt-0 space-y-6" id="resultSection">
-<h2 class="text-xl font-bold border-l-4 border-blue-500 pl-3">진단 결과</h2>
+<div class="mt-8 lg:mt-0 space-y-6" id="resultSection">
+<!-- HUG 안심전세 진단 영수증 카드 -->
+<div class="receipt-card bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+  <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+    <div>
+      <span class="text-[11px] font-extrabold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-0.5 rounded">HUG 126% 기준 안전진단</span>
+      <h3 class="text-base font-black text-slate-900 mt-1">전세보증금 안심 진단서</h3>
+    </div>
+    <span id="receiptDate" class="text-xs text-slate-400 font-medium">2026. 10. 21.</span>
+  </div>
+
+  <!-- 핵심 진단 종합 신호등 배지 -->
+  <div id="overallBadgeBox" class="p-4 rounded-xl flex items-center justify-between bg-emerald-50 border border-emerald-200 transition">
+    <div>
+      <div id="overallBadgeStatus" class="text-xs text-emerald-700 font-bold">HUG 보증보험 가입 진단</div>
+      <div id="overallBadgeText" class="text-lg font-black text-emerald-800">가입 가능 예상 (안전 🟢)</div>
+    </div>
+    <div class="text-right">
+      <div class="text-[11px] text-slate-500">한도 여유액</div>
+      <div id="hugMarginText" class="text-sm font-black text-emerald-700">+17,800만 원</div>
+    </div>
+  </div>
+
+  <!-- 상세 내역 표 -->
+  <div class="space-y-2 text-xs divide-y divide-slate-100">
+    <div class="flex justify-between pt-2">
+      <span class="text-slate-500 font-medium">대상 주택 공시가격</span>
+      <span id="recPrice" class="font-bold text-slate-800">30,000 만원 (3억 원)</span>
+    </div>
+    <div class="flex justify-between pt-2">
+      <span class="text-slate-500 font-medium">선순위 근저당 (채권최고액)</span>
+      <span id="recSenior" class="font-bold text-slate-800">0 만원</span>
+    </div>
+    <div class="flex justify-between pt-2">
+      <span class="text-slate-500 font-medium">내 전세 보증금</span>
+      <span id="recDeposit" class="font-bold text-slate-800">20,000 만원 (2억 원)</span>
+    </div>
+    <div class="flex justify-between pt-2 bg-blue-50/60 p-2 rounded">
+      <span class="text-blue-900 font-bold">HUG 126% 가입 한도액</span>
+      <span id="recHugLimit" class="font-black text-blue-700">37,800 만원 (3억 7,800만 원)</span>
+    </div>
+    <div class="flex justify-between pt-2">
+      <span class="text-slate-500 font-medium">부채비율 (선순위+전세 / 공시가)</span>
+      <span id="recDebtRatio" class="font-bold text-slate-800">66.7% (안전)</span>
+    </div>
+    <div class="flex justify-between pt-2">
+      <span class="text-slate-500 font-medium">경매 낙찰 시 예상 배당 (80%)</span>
+      <span id="recDividend" class="font-bold text-emerald-600">20,000 만원 (전액 회수)</span>
+    </div>
+    <div class="flex justify-between pt-2">
+      <span class="text-slate-500 font-medium">미회수 예상 손실</span>
+      <span id="recLoss" class="font-bold text-slate-800">0 만원 (손실 없음)</span>
+    </div>
+  </div>
+
+  <!-- Action Toolbar -->
+  <div class="pt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-2">
+    <button type="button" onclick="window.downloadDiagnosisPNG()" class="flex-1 py-2.5 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 whitespace-nowrap">
+      <span>📥</span> <span>진단서 이미지(PNG) 저장</span>
+    </button>
+    <button type="button" onclick="window.copyDiagnosisSummary()" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 whitespace-nowrap">
+      <span>📋</span> <span>진단 복사</span>
+    </button>
+    <button type="button" onclick="window.shareDiagnosis()" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 whitespace-nowrap">
+      <span>📤</span> <span>공유</span>
+    </button>
+  </div>
+</div>
+
+<h2 class="text-lg font-bold border-l-4 border-blue-500 pl-3">상세 분석 항목</h2>
 <!-- 깡통전세 위험도 -->
 <div class="result-card">
 <h3 class="font-bold text-gray-700 mb-2 flex justify-between">
@@ -498,7 +628,8 @@
 <!-- 하단 대형 배너 (푸터 직전) -->
 <!-- 애드센스 중간 반응형 배너 (전면 수정 표준 규격) -->
 <!-- 애드센스 중간 반응형 배너 (전면 수정 표준 규격) -->
-<div &="" (google="" --="" 100%="" <!--="" e-e-a-t="" faq="" 가이드="" 가이드라인="" 및="" 상세="" 실사용자="" 아코디언="" 충족)="" 📌="">
+<!-- 📌 상세 가이드 & FAQ 아코디언 (Google E-E-A-T 및 실사용자 가이드라인 100% 충족) -->
+<div>
 <section class="max-w-4xl mx-auto my-12 px-4">
 <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
 <div class="border-b border-slate-200 dark:border-slate-800 pb-5 mb-6">
@@ -660,5 +791,436 @@
       </details>
     </section>
 
+<script>
+// Real Estate Jeonse Safety Diagnosis Enhancements
+(function() {
+  function formatManwonToEok(manwon) {
+    var m = Math.round(Number(manwon) || 0);
+    if (m === 0) return '0원';
+    var eok = Math.floor(m / 10000);
+    var remainder = m % 10000;
+    if (eok > 0 && remainder > 0) {
+      return eok + '억 ' + remainder.toLocaleString('ko-KR') + '만 원';
+    } else if (eok > 0) {
+      return eok + '억 원';
+    } else {
+      return remainder.toLocaleString('ko-KR') + '만 원';
+    }
+  }
+
+  function updateKoreanLabels() {
+    var p = parseFloat(document.getElementById('propertyPrice').value) || 0;
+    var s = parseFloat(document.getElementById('seniorMortgage').value) || 0;
+    var d = parseFloat(document.getElementById('jeonseDeposit').value) || 0;
+
+    var pEl = document.getElementById('propertyPriceText');
+    if (pEl) pEl.textContent = formatManwonToEok(p);
+
+    var sEl = document.getElementById('seniorMortgageText');
+    if (sEl) sEl.textContent = s > 0 ? formatManwonToEok(s) : '0원 (없음)';
+
+    var dEl = document.getElementById('jeonseDepositText');
+    if (dEl) dEl.textContent = formatManwonToEok(d);
+  }
+
+  function updateReceiptValues(price, senior, deposit, hugLimit, debtRatio, dividend, loss) {
+    var isHugSafe = (deposit <= hugLimit && hugLimit > 0);
+    var badgeBox = document.getElementById('overallBadgeBox');
+    var badgeStatus = document.getElementById('overallBadgeStatus');
+    var badgeText = document.getElementById('overallBadgeText');
+    var marginText = document.getElementById('hugMarginText');
+
+    if (badgeBox && badgeText && marginText) {
+      if (!isHugSafe) {
+        badgeBox.className = 'p-4 rounded-xl flex items-center justify-between bg-red-50 border border-red-200 transition';
+        if (badgeStatus) badgeStatus.className = 'text-xs text-red-700 font-bold';
+        badgeText.className = 'text-lg font-black text-red-800';
+        badgeText.textContent = '가입 불가 예상 (위험 🔴)';
+        var overAmount = deposit - hugLimit;
+        marginText.className = 'text-sm font-black text-red-700';
+        marginText.textContent = '한도 ' + overAmount.toLocaleString() + '만 원 초과';
+      } else if (debtRatio > 70) {
+        badgeBox.className = 'p-4 rounded-xl flex items-center justify-between bg-amber-50 border border-amber-200 transition';
+        if (badgeStatus) badgeStatus.className = 'text-xs text-amber-700 font-bold';
+        badgeText.className = 'text-lg font-black text-amber-800';
+        badgeText.textContent = '가입 가능하나 주의 (🟡)';
+        var remain = hugLimit - deposit;
+        marginText.className = 'text-sm font-black text-amber-700';
+        marginText.textContent = '+' + remain.toLocaleString() + '만 원 여유';
+      } else {
+        badgeBox.className = 'p-4 rounded-xl flex items-center justify-between bg-emerald-50 border border-emerald-200 transition';
+        if (badgeStatus) badgeStatus.className = 'text-xs text-emerald-700 font-bold';
+        badgeText.className = 'text-lg font-black text-emerald-800';
+        badgeText.textContent = '가입 가능 예상 (안전 🟢)';
+        var remain = hugLimit - deposit;
+        marginText.className = 'text-sm font-black text-emerald-700';
+        marginText.textContent = '+' + remain.toLocaleString() + '만 원 여유';
+      }
+    }
+
+    var recPrice = document.getElementById('recPrice');
+    if (recPrice) recPrice.textContent = price.toLocaleString() + ' 만원 (' + formatManwonToEok(price) + ')';
+
+    var recSenior = document.getElementById('recSenior');
+    if (recSenior) recSenior.textContent = senior > 0 ? (senior.toLocaleString() + ' 만원 (' + formatManwonToEok(senior) + ')') : '0 만원 (없음)';
+
+    var recDeposit = document.getElementById('recDeposit');
+    if (recDeposit) recDeposit.textContent = deposit.toLocaleString() + ' 만원 (' + formatManwonToEok(deposit) + ')';
+
+    var recHugLimit = document.getElementById('recHugLimit');
+    if (recHugLimit) recHugLimit.textContent = Math.max(0, hugLimit).toLocaleString() + ' 만원 (' + formatManwonToEok(Math.max(0, hugLimit)) + ')';
+
+    var recDebtRatio = document.getElementById('recDebtRatio');
+    if (recDebtRatio) {
+      var ratioGrade = debtRatio <= 70 ? '(안전)' : (debtRatio <= 80 ? '(주의)' : '(위험)');
+      recDebtRatio.textContent = debtRatio.toFixed(1) + '% ' + ratioGrade;
+    }
+
+    var recDividend = document.getElementById('recDividend');
+    if (recDividend) {
+      var divNote = dividend >= deposit ? '(전액 회수)' : '(일부 배당)';
+      recDividend.textContent = dividend.toLocaleString() + ' 만원 ' + divNote;
+    }
+
+    var recLoss = document.getElementById('recLoss');
+    if (recLoss) {
+      recLoss.textContent = loss > 0 ? (loss.toLocaleString() + ' 만원 손실') : '0 만원 (손실 없음)';
+      recLoss.className = loss > 0 ? 'font-bold text-red-600' : 'font-bold text-slate-800';
+    }
+
+    var rDate = document.getElementById('receiptDate');
+    if (rDate) {
+      var d = new Date();
+      rDate.textContent = d.getFullYear() + '. ' + String(d.getMonth()+1).padStart(2, '0') + '. ' + String(d.getDate()).padStart(2, '0') + '.';
+    }
+  }
+
+  // Hook into calcBtn
+  var origCalcBtn = document.getElementById('calcBtn');
+  if (origCalcBtn) {
+    origCalcBtn.addEventListener('click', function() {
+      updateKoreanLabels();
+      var p = Math.max(0, parseFloat(document.getElementById('propertyPrice').value) || 0);
+      var s = Math.max(0, parseFloat(document.getElementById('seniorMortgage').value) || 0);
+      var d = Math.max(0, parseFloat(document.getElementById('jeonseDeposit').value) || 0);
+      var hLimit = (p * 1.26) - s;
+      var dRatio = p > 0 ? ((s + d) / p) * 100 : 0;
+      var aPrice = p * 0.8;
+      var div = 0;
+      if (aPrice > s) div = Math.min(d, aPrice - s);
+      var l = d - div;
+      updateReceiptValues(p, s, d, hLimit, dRatio, div, l);
+    });
+  }
+
+  // Quick Add Buttons Listener
+  document.querySelectorAll('.add-price-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var el = document.getElementById('propertyPrice');
+      var add = parseInt(this.getAttribute('data-add'), 10) || 0;
+      el.value = (parseFloat(el.value) || 0) + add;
+      updateKoreanLabels();
+      if (origCalcBtn) origCalcBtn.click();
+    });
+  });
+
+  document.querySelectorAll('.add-senior-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var el = document.getElementById('seniorMortgage');
+      var add = parseInt(this.getAttribute('data-add'), 10) || 0;
+      el.value = (parseFloat(el.value) || 0) + add;
+      updateKoreanLabels();
+      if (origCalcBtn) origCalcBtn.click();
+    });
+  });
+
+  document.querySelectorAll('.add-deposit-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var el = document.getElementById('jeonseDeposit');
+      var add = parseInt(this.getAttribute('data-add'), 10) || 0;
+      el.value = (parseFloat(el.value) || 0) + add;
+      updateKoreanLabels();
+      if (origCalcBtn) origCalcBtn.click();
+    });
+  });
+
+  document.querySelectorAll('.reset-input-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetId = this.getAttribute('data-target');
+      var el = document.getElementById(targetId);
+      if (el) {
+        el.value = '0';
+        updateKoreanLabels();
+        if (origCalcBtn) origCalcBtn.click();
+      }
+    });
+  });
+
+  ['propertyPrice', 'seniorMortgage', 'jeonseDeposit'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', function() {
+        updateKoreanLabels();
+        var p = parseFloat(document.getElementById('propertyPrice').value) || 0;
+        var d = parseFloat(document.getElementById('jeonseDeposit').value) || 0;
+        if (p > 0 && d > 0 && origCalcBtn) {
+          origCalcBtn.click();
+        }
+      });
+    }
+  });
+
+  // Global Diagnosis Copy Function
+  window.copyDiagnosisSummary = function() {
+    var p = parseFloat(document.getElementById('propertyPrice').value) || 0;
+    var s = parseFloat(document.getElementById('seniorMortgage').value) || 0;
+    var d = parseFloat(document.getElementById('jeonseDeposit').value) || 0;
+    var hLimit = (p * 1.26) - s;
+    var isSafe = (d <= hLimit && hLimit > 0);
+    var dRatio = p > 0 ? (((s + d) / p) * 100).toFixed(1) : 0;
+
+    var lines = [
+      '[전세보증금 안전진단 결과 (HUG 126% 기준)]',
+      '• 주택 공시가격: ' + p.toLocaleString() + '만원 (' + formatManwonToEok(p) + ')',
+      '• 선순위 근저당: ' + s.toLocaleString() + '만원',
+      '• 전세 보증금: ' + d.toLocaleString() + '만원 (' + formatManwonToEok(d) + ')',
+      '• HUG 126% 한도: ' + Math.max(0, hLimit).toLocaleString() + '만원',
+      '• 보증보험 진단: ' + (isSafe ? '가입 가능 예상 (안전 🟢)' : '가입 불가 예상 (거절 위험 🔴)'),
+      '• 부채비율: ' + dRatio + '%',
+      '',
+      '👉 1분 안전진단 계산기: ' + window.location.href
+    ];
+    var text = lines.join('\n');
+
+    function fallbackCopyText(str) {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = str;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (typeof showToastNotification === 'function') showToastNotification('진단 결과가 클립보드에 복사되었습니다! 📋');
+      } catch (err) {
+        if (typeof showToastNotification === 'function') showToastNotification('복사에 실패했습니다.');
+      }
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        if (typeof showToastNotification === 'function') showToastNotification('진단 결과가 클립보드에 복사되었습니다! 📋');
+      }).catch(function() {
+        fallbackCopyText(text);
+      });
+    } else {
+      fallbackCopyText(text);
+    }
+  };
+
+  // Global Share Function
+  window.shareDiagnosis = function() {
+    var p = parseFloat(document.getElementById('propertyPrice').value) || 0;
+    var d = parseFloat(document.getElementById('jeonseDeposit').value) || 0;
+    var lines = [
+      '🛡️ 전세보증금 안전진단 (HUG 126%)',
+      '공시가 ' + formatManwonToEok(p) + ' / 보증금 ' + formatManwonToEok(d),
+      '깡통전세 및 보증보험 가입 여부 1분 진단: ' + window.location.href
+    ];
+    var text = lines.join('\n');
+    if (navigator.share) {
+      navigator.share({ title: '전세보증금 안전진단 결과', text: text, url: window.location.href }).catch(function(){});
+    } else {
+      window.copyDiagnosisSummary();
+    }
+  };
+
+  // High-Resolution Native Canvas PNG Generator
+  window.downloadDiagnosisPNG = function() {
+    var price = Math.max(0, parseFloat(document.getElementById('propertyPrice').value) || 0);
+    var senior = Math.max(0, parseFloat(document.getElementById('seniorMortgage').value) || 0);
+    var deposit = Math.max(0, parseFloat(document.getElementById('jeonseDeposit').value) || 0);
+    var hugLimit = (price * 1.26) - senior;
+    var totalDebt = senior + deposit;
+    var debtRatio = price > 0 ? (totalDebt / price) * 100 : 0;
+    var auctionPrice = price * 0.8;
+    var myDividend = 0;
+    if (auctionPrice > senior) myDividend = Math.min(deposit, auctionPrice - senior);
+    var loss = deposit - myDividend;
+    var isHugSafe = (deposit <= hugLimit && hugLimit > 0);
+
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = 640;
+    canvas.height = 960;
+
+    // Background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, 640, 960);
+
+    // Header Banner
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, 640, 120);
+
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('HUG 안심전세 126% 기준 • 깡통전세 예방', 320, 42);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 22px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+    ctx.fillText('전세보증금 안전 진단서', 320, 74);
+
+    var today = new Date();
+    var dateStr = today.getFullYear() + '.' + String(today.getMonth()+1).padStart(2, '0') + '.' + String(today.getDate()).padStart(2, '0');
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '12px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+    ctx.fillText('진단일시: ' + dateStr, 320, 98);
+
+    // Status Badge Box
+    var badgeBg = '#ecfdf5';
+    var badgeBorder = '#10b981';
+    var badgeTitle = '🟢 HUG 보증보험 가입 가능 예상 (안전)';
+    var badgeTitleColor = '#065f46';
+    var badgeSub = 'HUG 126% 기준 이내로 안전한 전세가율입니다.';
+
+    if (!isHugSafe) {
+      badgeBg = '#fef2f2';
+      badgeBorder = '#ef4444';
+      badgeTitle = '🔴 HUG 가입 불가 예상 (위험)';
+      badgeTitleColor = '#991b1b';
+      badgeSub = '공시가 126% 한도를 초과하여 보증보험 거절 위험이 큽니다.';
+    } else if (debtRatio > 70) {
+      badgeBg = '#fffbeb';
+      badgeBorder = '#f59e0b';
+      badgeTitle = '🟡 주의 (부채비율 ' + debtRatio.toFixed(1) + '%)';
+      badgeTitleColor = '#92400e';
+      badgeSub = '가입은 가능하나 부채비율 70% 초과로 주의가 필요합니다.';
+    }
+
+    ctx.fillStyle = badgeBg;
+    ctx.strokeStyle = badgeBorder;
+    ctx.lineWidth = 2;
+    roundRect(ctx, 40, 140, 560, 85, 12, true, true);
+
+    ctx.fillStyle = badgeTitleColor;
+    ctx.font = 'bold 18px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(badgeTitle, 320, 175);
+
+    ctx.fillStyle = '#475569';
+    ctx.font = '13px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+    ctx.fillText(badgeSub, 320, 205);
+
+    // Key Figures Table
+    var rows = [
+      { label: '대상 주택 공시가격', val: price.toLocaleString() + ' 만원 (' + formatManwonToEok(price) + ')' },
+      { label: '선순위 근저당 (채권액)', val: senior.toLocaleString() + ' 만원 (' + formatManwonToEok(senior) + ')' },
+      { label: '내 전세 보증금', val: deposit.toLocaleString() + ' 만원 (' + formatManwonToEok(deposit) + ')' },
+      { label: 'HUG 126% 가입 한도액', val: Math.max(0, hugLimit).toLocaleString() + ' 만원 (' + formatManwonToEok(Math.max(0, hugLimit)) + ')', highlight: true },
+      { label: '부채비율 (선순위+전세 / 공시가)', val: debtRatio.toFixed(1) + '%' },
+      { label: '경매 낙찰 시 예상 배당 (80%)', val: myDividend.toLocaleString() + ' 만원 (' + formatManwonToEok(myDividend) + ')' },
+      { label: '미회수 예상 손실', val: loss > 0 ? loss.toLocaleString() + ' 만원 (' + formatManwonToEok(loss) + ')' : '0원 (전액 회수)', warn: loss > 0 }
+    ];
+
+    var startY = 250;
+    ctx.textAlign = 'left';
+    rows.forEach(function(row, idx) {
+      if (idx % 2 === 0) {
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillRect(40, startY, 560, 48);
+      }
+      if (row.highlight) {
+        ctx.fillStyle = '#eff6ff';
+        ctx.fillRect(40, startY, 560, 48);
+      }
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(40, startY, 560, 48);
+
+      ctx.fillStyle = row.highlight ? '#1d4ed8' : '#64748b';
+      ctx.font = (row.highlight ? 'bold ' : '') + '14px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(row.label, 60, startY + 30);
+
+      ctx.fillStyle = row.warn ? '#dc2626' : (row.highlight ? '#1d4ed8' : '#0f172a');
+      ctx.font = 'bold 15px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(row.val, 580, startY + 30);
+
+      startY += 48;
+    });
+
+    // Safety Checklist
+    startY += 25;
+    ctx.fillStyle = '#f1f5f9';
+    roundRect(ctx, 40, startY, 560, 160, 12, true, false);
+
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 14px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('🛡️ 계약 전 필수 확인 체크리스트', 60, startY + 30);
+
+    ctx.fillStyle = '#475569';
+    ctx.font = '12px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+    var checks = [
+      '• 등기부등본 갑구/을구 당일 재확인 (근저당, 압류, 가압류 여부)',
+      '• 집주인 국세·지방세 완납증명서 잔금 전 필수 확인',
+      '• "보증보험 가입 불가 시 계약 무효 및 계약금 즉시 반환" 특약 필수',
+      '• 전입신고 및 확정일자 부여는 이사 당일 즉시 처리 (익일 0시 효력)'
+    ];
+    checks.forEach(function(c, i) {
+      ctx.fillText(c, 60, startY + 60 + (i * 24));
+    });
+
+    // Footer Disclaimer
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '11px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('본 진단서는 참고용 시뮬레이션이며 법적 효력을 갖지 않습니다.', 320, 890);
+    ctx.fillStyle = '#2563eb';
+    ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif';
+    ctx.fillText('👉 jeonse-deposit-calc.enjoy-onepage.com', 320, 915);
+
+    try {
+      var link = document.createElement('a');
+      link.download = 'JeonseGuard_전세보증금_안전진단서.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      if (typeof showToastNotification === 'function') {
+        showToastNotification('안전진단서 영수증이 PNG 이미지로 저장되었습니다! 📥');
+      }
+    } catch(e) {
+      alert('이미지 생성 중 오류가 발생했습니다.');
+    }
+
+    function roundRect(c, x, y, w, h, r, fill, stroke) {
+      c.beginPath();
+      c.moveTo(x + r, y);
+      c.lineTo(x + w - r, y);
+      c.quadraticCurveTo(x + w, y, x + w, y + r);
+      c.lineTo(x + w, y + h - r);
+      c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      c.lineTo(x + r, y + h);
+      c.quadraticCurveTo(x, y + h, x, y + h - r);
+      c.lineTo(x, y + r);
+      c.quadraticCurveTo(x, y, x + r, y);
+      c.closePath();
+      if (fill) c.fill();
+      if (stroke) c.stroke();
+    }
+  };
+
+  // Run initial calculation after DOM load
+  window.addEventListener('load', function() {
+    updateKoreanLabels();
+    if (origCalcBtn) {
+      origCalcBtn.click();
+    }
+  });
+})();
+</script>
 </body>
 </html>
