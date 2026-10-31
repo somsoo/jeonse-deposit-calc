@@ -1,0 +1,26 @@
+{
+ "app": "jeonse-deposit-calc",
+ "host": "jeonse-deposit-calc.enjoy-onepage.com",
+ "watch": false,
+ "status": "unverified",
+ "checked": "",
+ "soft_days": 60,
+ "hard_days": 120,
+ "grace_days": 31,
+ "hide": [],
+ "pages": [
+  "guide-auction-dividend.html",
+  "guide-senior-mortgage.html",
+  "guide-special-terms.html",
+  "guide-villa-officetel.html",
+  "index.html",
+  "price-150m.html",
+  "price-200m.html",
+  "price-250m.html",
+  "price-300m.html",
+  "price-400m.html",
+  "price-500m.html"
+ ],
+ "values": {},
+ "sources": {}
+}
